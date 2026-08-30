@@ -1,0 +1,40 @@
+[project]
+name = "spark2json"
+version = "1.0.0"
+description = "Convert spark .sparkprofile files (protobuf) to readable JSON, with zero non-stdlib dependencies."
+readme = "README.md"
+license = { file = "LICENSE" }
+authors = [{ name = "spark2json contributors" }]
+requires-python = ">=3.8"
+keywords = ["spark", "minecraft", "profiler", "sparkprofile", "protobuf"]
+classifiers = [
+    "Development Status :: 5 - Production/Stable",
+    "Environment :: Console",
+    "Intended Audience :: System Administrators",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: GNU General Public License v3 (GPLv3)",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Topic :: Software Development :: Debuggers",
+    "Topic :: Utilities",
+]
+
+[project.urls]
+Homepage = "https://github.com/lucko/spark"
+Source = "https://github.com/lucko/spark"
+
+[project.scripts]
+spark2json = "spark2json.__main__:main"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/spark2json"]
