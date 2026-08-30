@@ -87,15 +87,6 @@ python -m nuitka --onefile --assume-yes-for-downloads \
     --include-package=spark2json nuitka_main.py
 ```
 
-## 与 spark 原生行为的一致性校验
-
-仓库内附两个校验脚本（需要本地存在 `../spark` checkout）：
-
-- `verify_schema.py`：解析 spark 官方 `.proto` 文件，逐字段比对本工具的字段映射表（消息名、字段号、字段名、类型、枚举值）。当前覆盖 43 个消息 / 195 个字段 / 8 组枚举，全部一致。
-- `test_diff.py`：用官方 protoc 生成绑定，随机填充一个覆盖所有字段类型的 `SamplerData`（含嵌套消息、packed repeated、map、枚举、uint32、负数 int64/int32、bytes），序列化后用本工具解码，并与官方 protobuf 反射 API 的结果逐字段比对。多个随机种子下均完全一致。
-
-调用树语义（`children_refs` 指向扁平 `children` 数组的索引、`times` 按窗口透传）已对照 spark 源码 `AbstractNodeExporter.java` 确认。
-
 ## 许可证
 
 本项目基于 [GPL-3.0](LICENSE) 发布。

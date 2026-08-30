@@ -86,15 +86,6 @@ python -m nuitka --onefile --assume-yes-for-downloads \
     --include-package=spark2json nuitka_main.py
 ```
 
-## Consistency with native spark behavior
-
-Two verification scripts are included (both expect a `../spark` checkout):
-
-- `verify_schema.py`: parses spark's official `.proto` files and cross-checks this tool's field mapping tables (message names, field numbers, field names, types, enum values). Currently covers 43 messages / 195 fields / 8 enums, all matching.
-- `test_diff.py`: generates bindings with the official protoc, fills a `SamplerData` covering every field type (nested messages, packed repeated, maps, enums, uint32, negative int64/int32, bytes), serializes it, decodes it with this tool and compares the result field-by-field against the official protobuf reflection API. Consistent across all tested random seeds.
-
-The call-tree semantics (`children_refs` indexing into the flat `children` array, `times` passed through per window) were confirmed against spark's source, `AbstractNodeExporter.java`.
-
 ## License
 
 This project is released under the [GPL-3.0](LICENSE).
